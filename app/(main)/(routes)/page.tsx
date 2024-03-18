@@ -1,11 +1,11 @@
-import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+import { ModeToggle } from "@/components/mode-toggle";
+import { UserButton } from "@clerk/nextjs";
 
 export default function Home() {
-  const state = true;
   return (
-    <div className="flex flex-col">
-      <p>This is protected route</p>
+    <div className="h-screen">
+      <UserButton afterSignOutUrl="/" />
+      <ModeToggle />
     </div>
   );
 }
