@@ -97,8 +97,8 @@ model Message {
   id        String  @id @default(uuid())
   content   String  @db.Text
   fileUrl   String? @db.Text
-  memeberId String
-  member    Member  @relation(fields: [memeberId], references: [id], onDelete: Cascade)
+  memberId  String
+  member    Member  @relation(fields: [memberId], references: [id], onDelete: Cascade)
   channelId String
   channel   Channel @relation(fields: [channelId], references: [id], onDelete: Cascade)
 
@@ -108,7 +108,7 @@ model Message {
   updatedAt DateTime @updatedAt
 
   @@index([channelId])
-  @@index([memeberId])
+  @@index([memberId])
 }
 
 model Conversation {
