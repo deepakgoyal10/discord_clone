@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input";
 import { Plus, Smile } from "lucide-react";
 import qs from "query-string";
 import axios from "axios";
+import { useModal } from "@/hooks/use-modal-store";
 interface ChatInputProps {
   apiUrl: string;
   query: Record<string, any>;
@@ -27,6 +28,8 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
     },
   });
   const isLoading = form.formState.isSubmitting;
+
+  const { onOpen } = useModal();
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
@@ -52,7 +55,7 @@ const ChatInput = ({ apiUrl, query, name, type }: ChatInputProps) => {
                 <div className="relative p-4 pb-6">
                   <button
                     className="absolute top-7 left-8 h-[24px] w-[24px] bg-zinc-500 dark:bg-zinc-400 hover:bg-zinc-600 dark:hover:bg-zinc-300 transition rounded-full p-1 flex items-center justify-center"
-                    onClick={() => {}}
+                    onClick={() => onOpen("messageFile", { apiUrl, query })}
                     type="button"
                   >
                     <Plus className="text-white dark:text-[#313338]" />
