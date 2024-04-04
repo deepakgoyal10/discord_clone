@@ -17,7 +17,6 @@ export const useChatQuery = ({
   paramValue,
 }: ChatQueryProps) => {
   const { isConnected } = useSocket();
-  const params = useParams();
 
   const fetchMessages = async ({ pageParam = undefined }) => {
     const url = qs.stringifyUrl(
