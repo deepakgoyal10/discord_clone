@@ -6,13 +6,13 @@ import { v4 as uuidv4 } from "uuid";
 import { MemberRole } from "@prisma/client";
 
 export async function POST(req: Request) {
-  try {
-    const { name, imageUrl } = await req.json();
-    const profile = await currentProfile();
+  const { name, imageUrl } = await req.json();
+  const profile = await currentProfile();
 
-    if (!profile) {
-      return new NextResponse("Unauthorized", { status: 401 });
-    }
+  if (!profile) {
+    return new NextResponse("Unauthorized", { status: 401 });
+  }
+  try {
     const server = await db.server.create({
       data: {
         profileId: profile.id,
